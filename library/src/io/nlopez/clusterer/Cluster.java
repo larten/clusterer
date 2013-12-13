@@ -2,11 +2,14 @@ package io.nlopez.clusterer;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import android.graphics.Point;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by Nacho Lopez on 28/10/13.
+ * Modified by Larten on 13/12/2013
  */
 public class Cluster {
 
@@ -14,9 +17,12 @@ public class Cluster {
     private LatLng center;
     private Double latitudeSum;
     private Double longitudeSum;
+	
+	private Point position;
 
-    public Cluster(Clusterable marker) {
+    public Cluster(Clusterable marker, Point position) {
         addMarker(marker);
+		this.position = position;
     }
 
     public void addMarker(Clusterable marker) {
@@ -47,5 +53,9 @@ public class Cluster {
     public int getWeight() {
         return markers.size();
     }
-
+	
+    public Point getPosition() {
+        return position;
+    }
+	
 }
