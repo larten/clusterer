@@ -1,3 +1,5 @@
+This is my modified version of nlopez's cool library. Show marker only if it is on visible area of screen and is not out of screen.
+
 Clusterer
 =========
 
