@@ -78,7 +78,11 @@ public class Clusterer {
 
                 task = new UpdateMarkersTask(context, googleMap, onPaintingMarker,
                         onPaintingCluster, false);
-                task.executeOnExecutor(executor, everyPOI);
+                if (Build.VERSION.SDK_INT > 10) {
+                    task.executeOnExecutor(executor, everyPOI);
+                } else {
+                    task.execute(everyPOI);
+                }
 
             } else if (!cameraPosition.target.equals(oldLatLng)) {
                 if (reDrawTask != null) {
@@ -88,7 +92,11 @@ public class Clusterer {
                 oldLatLng = cameraPosition.target;
                 reDrawTask = new UpdateMarkersTask(context, googleMap, onPaintingMarker,
                         onPaintingCluster, true);
-                reDrawTask.executeOnExecutor(executor, everyPOI);
+                if (Build.VERSION.SDK_INT > 10) {
+                    reDrawTask.executeOnExecutor(executor, everyPOI);
+                } else {
+                    reDrawTask.execute(everyPOI);
+                }
             }
 
             if (onCameraChangeListener != null) {
